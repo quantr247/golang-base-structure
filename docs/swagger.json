@@ -1,0 +1,187 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "API documents.\n\n## Authentication\nFirstly, grab the **access_token** from the response of `/login`. Then include this header in all API calls:\n```\nAuthorization: Bearer ${access_token}\n```\n\nFor testing directly on this Swagger page, use the `Authorize` button right here bellow.",
+    "title": "Golang base structure project",
+    "contact": {
+      "name": "QuanTR",
+      "email": "quan.t.r247@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "host": "192.168.56.2:10001",
+  "paths": {
+    "/application": {
+      "get": {
+        "description": "Get application list",
+        "tags": [
+          "application"
+        ],
+        "operationId": "getApplication",
+        "responses": {
+          "200": {
+            "description": "GetApplicationResponseDTO",
+            "schema": {
+              "$ref": "#/definitions/GetApplicationResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/transaction": {
+      "post": {
+        "description": "Create payment transaction",
+        "tags": [
+          "transaction"
+        ],
+        "operationId": "postTransaction",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TransactionRequestDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TransactionResponseDTO",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "Get user by id",
+        "tags": [
+          "user"
+        ],
+        "operationId": "getUserByID",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "in: string",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UserResponseDTO",
+            "schema": {
+              "$ref": "#/definitions/UserResponseDTO"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetApplicationRequestDTO": {
+      "type": "object",
+      "properties": {
+        "ApplicationID": {
+          "description": "ApplicationID of the application's id\nin: string",
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "GetApplicationResponseDTO": {
+      "type": "object",
+      "properties": {
+        "Code": {
+          "description": "Code of the application\nin: string",
+          "type": "string"
+        },
+        "Name": {
+          "description": "Name of the application\nin: string",
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "RegisterUserRequestDTO": {
+      "type": "object",
+      "properties": {
+        "Password": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "UserName": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "RegisterUserResponseDTO": {
+      "type": "object",
+      "properties": {
+        "ExpireIn": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "RefreshToken": {
+          "type": "string"
+        },
+        "Token": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "TransactionRequestDTO": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "TransactionResponseDTO": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "type": "string"
+        },
+        "ResultCode": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    },
+    "UserResponseDTO": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "UserName": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "golang-base-structure/internal/dto"
+    }
+  }
+}

@@ -27,10 +27,10 @@ install:
 	@go install github.com/rakyll/statik@latest
 
 gen-swagger:
-	@swagger generate spec -w ./cmd/server -o ./swaggerui/swagger.json --scan-models
+	@swagger generate spec -w ./cmd/server -o ./docs/swagger.json --scan-models
 
 run:
-	@statik -f -src=swaggerui -dest=cmd/server && cd cmd/server && go run main.go
+	@statik -f -src=docs -dest=cmd/server && cd cmd/server && go run main.go
 
 docker-image:
 	@docker build --tag project-base .
