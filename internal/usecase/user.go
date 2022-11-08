@@ -36,8 +36,8 @@ func (u *userUseCase) RegisterUser(ctx context.Context, req *dto.RegisterUserReq
 
 func (u *userUseCase) GetUserByID(ctx context.Context, id string) (res *dto.UserResponseDTO, err error) {
 	res = &dto.UserResponseDTO{
-		ID: "1",
-		UserName: "ahihi",
+		ID:          "1",
+		UserName:    "ahihi",
 		PhoneNumber: "0909000999",
 	}
 	return res, nil

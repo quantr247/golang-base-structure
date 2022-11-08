@@ -2,10 +2,14 @@ package usecase
 
 import (
 	"context"
+	"errors"
 	"golang-base-structure/config"
+	"golang-base-structure/internal/common"
 	"golang-base-structure/internal/dto"
+	"strings"
 
 	goCache "github.com/patrickmn/go-cache"
+	"go.uber.org/zap"
 )
 
 type (
@@ -34,7 +38,14 @@ func NewApplicationUseCase(
 
 func (u *applicationUseCase) GetApplication(ctx context.Context, req *dto.GetApplicationRequestDTO) (
 	res *dto.GetApplicationResponseDTO, err error) {
-	res = &dto.GetApplicationResponseDTO{}
 
+	res = &dto.GetApplicationResponseDTO{
+		Name: "Ahihi",
+		Code: "Do ngok",
+	}
+	if req != nil && strings.EqualFold(req.ApplicationID, "") {
+		zap.S().Warnf("Application id not found")
+		return nil, errors.New(common.ReasonApplicationNotFound.Code())
+	}
 	return res, nil
 }

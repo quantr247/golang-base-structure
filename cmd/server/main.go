@@ -1,3 +1,28 @@
+// Golang base structure project
+//
+// API documents.
+//
+// ## Authentication
+// Firstly, grab the **access_token** from the response of `/login`. Then include this header in all API calls:
+// ```
+// Authorization: Bearer ${access_token}
+// ```
+//
+// For testing directly on this Swagger page, use the `Authorize` button right here bellow.
+//
+// Terms Of Service: N/A
+//
+//	Host: 192.168.56.2:10001
+//	Version: 1.0.0
+//	Contact: QuanTR <quan.t.r247@gmail.com>
+//
+//	Consumes:
+//	- application/json
+//
+//	Produces:
+//	- application/json
+//
+// swagger:meta
 package main
 
 import (

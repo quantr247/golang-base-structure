@@ -16,3 +16,24 @@ folder: ## create folder structure
 	@mkdir -p internal/registry
 	@mkdir -p internal/usecase
 	@mkdir -p internal/util
+
+depends:
+	@go get github.com/rakyll/statik
+	@go get github.com/mattn/go-oci8
+
+install:
+	@sudo chmod +x scripts/swagger.sh
+	sh scripts/swagger.sh
+	@go install github.com/rakyll/statik@latest
+
+gen-swagger:
+	@swagger generate spec -w ./cmd/server -o ./swaggerui/swagger.json --scan-models
+
+run:
+	@statik -f -src=swaggerui -dest=cmd/server && cd cmd/server && go run main.go
+
+docker-image:
+	@docker build --tag project-base .
+
+docker-run:
+	@docker run --publish 10001:10001 project-base

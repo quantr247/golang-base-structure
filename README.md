@@ -13,9 +13,17 @@
         - registry      # Dependency injection container
         - repository    # Database implement for function interface
         - usecase       # Handle business logic
-        - util          # Util for this project        
+        - util          # Util for this project    
 
-2. Base structure for Golang project with:
+2. Run make install to install all dependency
+    make depends
+    make install
+
+3. Run make run to test
+    make run    
+
+# Explain of this project
+1. Base structure for Golang project with:
 - HTTP gateway
 - DB connection to: Oracle, Postgres, SQLServer
 - Memcache
@@ -23,7 +31,7 @@
 - Dependency injection
 - Logging with zap
 
-3. OracleDB
+2. OracleDB
 - To implement with Oracle db, need add Golang Oracle database driver: https://github.com/mattn/go-oci8
 
-4. Check file /registry/di_container.go to remove comment for connect to DB
+3. Check file /registry/di_container.go to remove comment for connect to DB
